@@ -5,12 +5,19 @@ import 'package:flutter/material.dart';
 
 ///  Created by mac on 15/3/23.
 class DynamicContactForms extends StatefulWidget {
+  const DynamicContactForms({super.key});
+
   @override
   State<DynamicContactForms> createState() => _DynamicContactFormsState();
 }
 
 class _DynamicContactFormsState extends State<DynamicContactForms> {
-  final List<ContactForm> _contactForms = List.empty(growable: true);
+  final List<ContactForm> _contactForms = [
+    ContactForm(
+      index: 0,
+      contactModel: ContactModel(id: 0),
+    ),
+  ];
 
   _onAdd() {
     setState(() {

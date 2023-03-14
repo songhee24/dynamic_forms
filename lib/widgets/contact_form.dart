@@ -7,15 +7,15 @@ class ContactForm extends StatefulWidget {
       {super.key,
       required this.index,
       required this.contactModel,
-      required this.onRemove});
+      this.onRemove});
 
   final int index;
   final ContactModel contactModel;
-  final Function onRemove;
+  final Function? onRemove;
   final state = _ContactFormState();
 
   @override
-  _ContactFormState createState() => _ContactFormState();
+  _ContactFormState createState() => state;
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _contactController = TextEditingController();
@@ -90,7 +90,9 @@ class _ContactFormState extends State<ContactForm> {
                               style: TextStyle(color: Colors.blue),
                             )),
                         TextButton(
-                          onPressed: () => widget.onRemove(),
+                          onPressed: widget.onRemove != null
+                              ? () => widget.onRemove!()
+                              : null,
                           child: const Text(
                             "Remove",
                             style: TextStyle(color: Colors.blue),
