@@ -12,12 +12,7 @@ class DynamicContactForms extends StatefulWidget {
 }
 
 class _DynamicContactFormsState extends State<DynamicContactForms> {
-  final List<ContactForm> _contactForms = [
-    ContactForm(
-      index: 0,
-      contactModel: ContactModel(id: 0),
-    ),
-  ];
+  final List<ContactForm> _contactForms = List.empty(growable: true);
 
   _onAdd() {
     setState(() {
