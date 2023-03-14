@@ -38,6 +38,7 @@ class _ContactFormState extends State<ContactForm> {
 
   @override
   Widget build(BuildContext context) {
+    bool isIndexZero = widget.index == 0 ? true : false;
     return Material(
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -89,15 +90,14 @@ class _ContactFormState extends State<ContactForm> {
                               "Clear",
                               style: TextStyle(color: Colors.blue),
                             )),
-                        TextButton(
-                          onPressed: widget.onRemove != null
-                              ? () => widget.onRemove!()
-                              : null,
-                          child: const Text(
-                            "Remove",
-                            style: TextStyle(color: Colors.blue),
+                        if (!isIndexZero)
+                          TextButton(
+                            onPressed: () => widget.onRemove!(),
+                            child: const Text(
+                              "Remove",
+                              style: TextStyle(color: Colors.blue),
+                            ),
                           ),
-                        ),
                       ],
                     )
                   ],
