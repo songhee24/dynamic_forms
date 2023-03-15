@@ -21,17 +21,19 @@ class ContactForm extends StatefulWidget {
   final TextEditingController _contactController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
 
-  bool isValidated() => state.validate();
+  bool isValidated() => state._validate();
 }
 
 class _ContactFormState extends State<ContactForm> {
   final _formKey = GlobalKey<FormState>();
 
-  bool validate() {
+  bool _validate() {
     //Validate Form Fields
-    bool validate = _formKey.currentState?.validate() ?? false;
-    if (validate) _formKey.currentState?.save();
-    return validate;
+    bool? validate = _formKey.currentState?.validate();
+    if (validate != null && validate) {
+      _formKey.currentState?.save();
+    }
+    return validate ?? false;
   }
 
   @override
