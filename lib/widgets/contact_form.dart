@@ -69,6 +69,33 @@ class _ContactFormState extends State<ContactForm> {
                           fontSize: 16,
                           color: Colors.orange),
                     ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              setState(() {
+                                //Clear All forms Data
+                                widget.contactModel.name = "";
+                                widget.contactModel.number = "";
+                                widget.contactModel.email = "";
+                                widget._nameController.clear();
+                                widget._contactController.clear();
+                                widget._emailController.clear();
+                              });
+                            },
+                            child: const Text(
+                              "Clear",
+                              style: TextStyle(color: Colors.blue),
+                            )),
+                        TextButton(
+                            onPressed: () => widget.onRemove(),
+                            child: const Text(
+                              "Remove",
+                              style: TextStyle(color: Colors.blue),
+                            )),
+                      ],
+                    )
                   ],
                 ),
               ],
