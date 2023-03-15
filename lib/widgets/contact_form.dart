@@ -59,7 +59,6 @@ class _ContactFormState extends State<ContactForm> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
-                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -69,79 +68,90 @@ class _ContactFormState extends State<ContactForm> {
                           fontSize: 16,
                           color: Colors.orange),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextButton(
-                            onPressed: () {
-                              setState(() {
-                                //Clear All forms Data
-                                widget.contactModel.name = "";
-                                widget.contactModel.number = "";
-                                widget.contactModel.email = "";
-                                widget._nameController.clear();
-                                widget._contactController.clear();
-                                widget._emailController.clear();
-                              });
-                            },
-                            child: const Text(
-                              "Clear",
-                              style: TextStyle(color: Colors.blue),
-                            )),
-                        TextButton(
-                            onPressed: () => widget.onRemove(),
-                            child: const Text(
-                              "Remove",
-                              style: TextStyle(color: Colors.blue),
-                            )),
-                        TextFormField(
-                          controller: widget._nameController,
-                          // initialValue: widget.contactModel.name,
-                          onChanged: (value) =>
-                              widget.contactModel.name = value,
-                          onSaved: (value) => widget.contactModel.name = value!,
-                          validator: (value) =>
-                              value!.length > 3 ? null : "Enter Name",
-                          decoration: const InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 12),
-                            border: OutlineInputBorder(),
-                            hintText: "Enter Name",
-                            labelText: "Name",
+                    Expanded(
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  //Clear All forms Data
+                                  widget.contactModel.name = "";
+                                  widget.contactModel.number = "";
+                                  widget.contactModel.email = "";
+                                  widget._nameController.clear();
+                                  widget._contactController.clear();
+                                  widget._emailController.clear();
+                                });
+                              },
+                              child: const Text(
+                                "Clear",
+                                style: TextStyle(color: Colors.blue),
+                              )),
+                          TextButton(
+                              onPressed: () => widget.onRemove(),
+                              child: const Text(
+                                "Remove",
+                                style: TextStyle(color: Colors.blue),
+                              )),
+                          Expanded(
+                            child: TextFormField(
+                              controller: widget._nameController,
+                              // initialValue: widget.contactModel.name,
+                              onChanged: (value) =>
+                                  widget.contactModel.name = value,
+                              onSaved: (value) =>
+                                  widget.contactModel.name = value!,
+                              validator: (value) =>
+                                  value!.length > 3 ? null : "Enter Name",
+                              decoration: const InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 12),
+                                border: OutlineInputBorder(),
+                                hintText: "Enter Name",
+                                labelText: "Name",
+                              ),
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextFormField(
-                          controller: widget._contactController,
-                          onChanged: (value) =>
-                              widget.contactModel.number = value,
-                          onSaved: (value) => widget.contactModel.name = value!,
-                          validator: (value) =>
-                              value!.length > 3 ? null : "Number is Not Valid",
-                          decoration: const InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 12),
-                            border: OutlineInputBorder(),
-                            hintText: "Enter Number",
-                            labelText: "Number",
+                          const SizedBox(height: 8),
+                          Expanded(
+                            child: TextFormField(
+                              controller: widget._contactController,
+                              onChanged: (value) =>
+                                  widget.contactModel.number = value,
+                              onSaved: (value) =>
+                                  widget.contactModel.name = value!,
+                              validator: (value) => value!.length > 3
+                                  ? null
+                                  : "Number is Not Valid",
+                              decoration: const InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 12),
+                                border: OutlineInputBorder(),
+                                hintText: "Enter Number",
+                                labelText: "Number",
+                              ),
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        TextFormField(
-                          controller: widget._emailController,
-                          onChanged: (value) =>
-                              widget.contactModel.email = value,
-                          onSaved: (value) =>
-                              widget.contactModel.email = value!,
-                          decoration: const InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 12),
-                            border: OutlineInputBorder(),
-                            hintText: "Enter Email",
-                            labelText: "Email",
+                          const SizedBox(height: 8),
+                          Expanded(
+                            child: TextFormField(
+                              controller: widget._emailController,
+                              onChanged: (value) =>
+                                  widget.contactModel.email = value,
+                              onSaved: (value) =>
+                                  widget.contactModel.email = value!,
+                              decoration: const InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 12),
+                                border: OutlineInputBorder(),
+                                hintText: "Enter Email",
+                                labelText: "Email",
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     )
                   ],
                 ),
