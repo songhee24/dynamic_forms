@@ -19,7 +19,7 @@ class _DynamicContactFormsState extends State<DynamicContactForms> {
         ContactForm(
           index: _contactForms.length,
           contactModel: contactModel,
-          onRemove: () {},
+          onRemove: () => onRemove(contactModel),
         ),
       );
     });
