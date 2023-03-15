@@ -1,3 +1,4 @@
+import 'package:dynamic_forms/screens/dynamic_contact_forms.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -36,9 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: const Center(
-        child: Text('Hello'),
-      ),
+      body: SafeArea(child: DynamicContactForms()),
     );
   }
 }
