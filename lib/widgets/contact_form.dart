@@ -29,9 +29,9 @@ class _ContactFormState extends State<ContactForm> {
 
   bool validate() {
     //Validate Form Fields
-    // bool validate = formKey.currentState.validate();
-    // if (validate) formKey.currentState.save();
-    return false;
+    bool validate = _formKey.currentState?.validate() ?? false;
+    if (validate) _formKey.currentState?.save();
+    return validate;
   }
 
   @override
