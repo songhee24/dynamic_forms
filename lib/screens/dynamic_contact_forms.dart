@@ -12,20 +12,20 @@ class DynamicContactForms extends StatefulWidget {
 class _DynamicContactFormsState extends State<DynamicContactForms> {
   final List<ContactForm> _contactForms = List.empty(growable: true);
 
-  onAdd() {
+  _onAdd() {
     setState(() {
       ContactModel contactModel = ContactModel(id: _contactForms.length);
       _contactForms.add(
         ContactForm(
           index: _contactForms.length,
           contactModel: contactModel,
-          onRemove: () => onRemove(contactModel),
+          onRemove: () => _onRemove(contactModel),
         ),
       );
     });
   }
 
-  onRemove(ContactModel contact) {
+  _onRemove(ContactModel contact) {
     setState(() {
       int index = _contactForms
           .indexWhere((element) => element.contactModel.id == contact.id);
@@ -53,7 +53,7 @@ class _DynamicContactFormsState extends State<DynamicContactForms> {
         backgroundColor: Colors.orange,
         child: const Icon(Icons.add),
         onPressed: () {
-          onAdd();
+          _onAdd();
         },
       ),
       body: _contactForms.isNotEmpty
