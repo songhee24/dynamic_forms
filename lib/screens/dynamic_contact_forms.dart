@@ -33,6 +33,20 @@ class _DynamicContactFormsState extends State<DynamicContactForms> {
     });
   }
 
+  _onSave() {
+    bool allValid = true;
+    for (var element in _contactForms) {
+      allValid = (allValid & element.isValidated());
+    }
+    if (allValid) {
+      List<String> names =
+          _contactForms.map((e) => e.contactModel.name.toString()).toList();
+      debugPrint("$names");
+    } else {
+      debugPrint("Form is Not Valid");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +58,7 @@ class _DynamicContactFormsState extends State<DynamicContactForms> {
         child: CupertinoButton(
           color: Theme.of(context).primaryColor,
           onPressed: () {
-            // onSave();
+            _onSave();
           },
           child: const Text("Save"),
         ),
