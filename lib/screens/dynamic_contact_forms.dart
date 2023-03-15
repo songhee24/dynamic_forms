@@ -25,6 +25,14 @@ class _DynamicContactFormsState extends State<DynamicContactForms> {
     });
   }
 
+  onRemove(ContactModel contact) {
+    setState(() {
+      int index = _contactForms
+          .indexWhere((element) => element.contactModel.id == contact.id);
+      _contactForms.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
