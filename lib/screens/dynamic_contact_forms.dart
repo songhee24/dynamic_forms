@@ -1,10 +1,29 @@
+import 'package:dynamic_forms/models/contact_model.dart';
 import 'package:dynamic_forms/widgets/contact_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 ///  Created by mac on 15/3/23.
-class DynamicContactForms extends StatelessWidget {
-  List<ContactForm> contactForms = List.empty(growable: true);
+class DynamicContactForms extends StatefulWidget {
+  @override
+  State<DynamicContactForms> createState() => _DynamicContactFormsState();
+}
+
+class _DynamicContactFormsState extends State<DynamicContactForms> {
+  final List<ContactForm> _contactForms = List.empty(growable: true);
+
+  onAdd() {
+    setState(() {
+      ContactModel contactModel = ContactModel(id: _contactForms.length);
+      _contactForms.add(
+        ContactForm(
+          index: _contactForms.length,
+          contactModel: contactModel,
+          onRemove: () {},
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +45,14 @@ class DynamicContactForms extends StatelessWidget {
         backgroundColor: Colors.orange,
         child: const Icon(Icons.add),
         onPressed: () {
-          // onAdd();
+          onAdd();
         },
       ),
-      body: contactForms.isNotEmpty
+      body: _contactForms.isNotEmpty
           ? ListView.builder(
-              itemCount: contactForms.length,
+              itemCount: _contactForms.length,
               itemBuilder: (_, index) {
-                return contactForms[index];
+                return _contactForms[index];
               })
           : const Center(child: Text("Tap on + to Add Contact")),
     );
