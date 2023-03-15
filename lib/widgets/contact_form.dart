@@ -94,6 +94,53 @@ class _ContactFormState extends State<ContactForm> {
                               "Remove",
                               style: TextStyle(color: Colors.blue),
                             )),
+                        TextFormField(
+                          controller: widget._nameController,
+                          // initialValue: widget.contactModel.name,
+                          onChanged: (value) =>
+                              widget.contactModel.name = value,
+                          onSaved: (value) => widget.contactModel.name = value!,
+                          validator: (value) =>
+                              value!.length > 3 ? null : "Enter Name",
+                          decoration: const InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 12),
+                            border: OutlineInputBorder(),
+                            hintText: "Enter Name",
+                            labelText: "Name",
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: widget._contactController,
+                          onChanged: (value) =>
+                              widget.contactModel.number = value,
+                          onSaved: (value) => widget.contactModel.name = value!,
+                          validator: (value) =>
+                              value!.length > 3 ? null : "Number is Not Valid",
+                          decoration: const InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 12),
+                            border: OutlineInputBorder(),
+                            hintText: "Enter Number",
+                            labelText: "Number",
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: widget._emailController,
+                          onChanged: (value) =>
+                              widget.contactModel.email = value,
+                          onSaved: (value) =>
+                              widget.contactModel.email = value!,
+                          decoration: const InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 12),
+                            border: OutlineInputBorder(),
+                            hintText: "Enter Email",
+                            labelText: "Email",
+                          ),
+                        ),
                       ],
                     )
                   ],
